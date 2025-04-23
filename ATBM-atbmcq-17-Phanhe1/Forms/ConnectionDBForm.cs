@@ -33,37 +33,49 @@ namespace ATBM_atbmcq_17_Phanhe1.Forms
         {
             try
             {
-                ConnectionManager cm = await Task(Run () =>
+                ConnectionManager? cm = null;
+
+                await Task.Run(() =>
                 {
                     try
                     {
                         List<string> connectionInfo = this.GetTextFieldValues();
-                        ConnectionManager cm = new ConnectionManager(connectionInfo);
-                        cm.connectToDatabase();
-                        return cm;
+                        ConnectionManager cmInner = new ConnectionManager(connectionInfo);
+
+                        bool success = cmInner.connectToDatabase();
+                        if (success)
+                        {
+                            cm = cmInner;
+                        }
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine(ex.ToString());
-                        return null;
+                        this.Invoke((MethodInvoker)(() =>
+                        {
+                            MessageBox.Show("Lỗi không xác định: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }));
                     }
                 });
 
+
                 if (cm == null || cm.getConnection() == null)
                 {
+                    Console.WriteLine("cm hoặc connection null!");
                     label1.Text = "Lỗi kết nối cơ sở dữ liệu, chúc may mắn lần sau!";
                     label1.Visible = true;
-                    //pane.Invalidate();
-                    //pane.Update();
                 }
                 else
                 {
-                    Form thisWindow = this.FindForm();
-                    thisWindow?.Close();
+                    // Thông báo thành công (tuỳ chọn)
+                    MessageBox.Show("✅ Kết nối thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    //MenuWindow mw = MenuWindow.getInstance(cm);
-                    //mw.launch();
+                    // Mở UserRolePrivilegeForm
+                    UserRolePrivilegeForm nextForm = new UserRolePrivilegeForm(cm);
+                    this.Hide(); 
+                    nextForm.FormClosed += (s, args) => this.Close(); 
+                    nextForm.Show();
                 }
+
             }
             catch (Exception ex)
             {
@@ -79,6 +91,29 @@ namespace ATBM_atbmcq_17_Phanhe1.Forms
         {
             Form thisWindow = this.FindForm();
             thisWindow?.Close();
+        }
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            // handle text change
+        }
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+            // handle text change
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
