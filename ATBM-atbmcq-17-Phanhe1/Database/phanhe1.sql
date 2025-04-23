@@ -1,4 +1,12 @@
--- Kết nối với PDB XEPDB1
+DROP TABLE chi_tiet_phieu_muon CASCADE CONSTRAINTS;
+DROP TABLE phieu_muon CASCADE CONSTRAINTS;
+DROP TABLE sach CASCADE CONSTRAINTS;
+DROP TABLE thu_vien CASCADE CONSTRAINTS;
+DROP TABLE loai_sach CASCADE CONSTRAINTS;
+DROP TABLE doc_gia CASCADE CONSTRAINTS;
+DROP TABLE nhan_vien CASCADE CONSTRAINTS;
+DROP TABLE loai_nhan_vien CASCADE CONSTRAINTS;
+-- ALTER SESSION SET CONTAINER = ORCL21PDB1;
 
 create table sach (
 ma_sach number,
@@ -251,3 +259,21 @@ INSERT INTO chi_tiet_phieu_muon VALUES (13, 26, 1);
 INSERT INTO chi_tiet_phieu_muon VALUES (14, 27, 1);
 INSERT INTO chi_tiet_phieu_muon VALUES (14, 29, 1);
 INSERT INTO chi_tiet_phieu_muon VALUES (15, 30, 1); 
+
+DROP USER atbm_user CASCADE;
+CREATE USER atbm_user IDENTIFIED BY atbm123;
+--CREATE USER atbm_user1 IDENTIFIED BY atbm123;
+--CREATE USER atbm_user2 IDENTIFIED BY atbm123;
+--GRANT CREATE SESSION TO ATBM_USER2;
+
+-- grant mot so quyen cho atbm_user
+GRANT CONNECT, RESOURCE TO atbm_user;
+GRANT CREATE SESSION, CREATE TABLE, CREATE VIEW, CREATE PROCEDURE TO atbm_user;
+GRANT SELECT ON DBA_ROLE_PRIVS TO ATBM_USER;
+GRANT SELECT ON dba_sys_privs TO atbm_user;
+
+-- De user khác chay các proc can grant
+GRANT EXECUTE ON atbm_user.sp_get_all_users TO PUBLIC;
+GRANT EXECUTE ON atbm_user.sp_get_roles_of_user TO PUBLIC;
+GRANT EXECUTE ON atbm_user.sp_get_sys_privs_of_user TO PUBLIC;
+GRANT EXECUTE ON atbm_user.sp_get_object_privs_of_user TO PUBLIC;
