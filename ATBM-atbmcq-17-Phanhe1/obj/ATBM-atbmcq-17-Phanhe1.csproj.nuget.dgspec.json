@@ -1,36 +1,36 @@
 {
   "format": 1,
   "restore": {
-    "E:\\ADMIN\\src\\ATBM-atbmcq-17-Phanhe1\\ATBM-atbmcq-17-Phanhe1\\ATBM-atbmcq-17-Phanhe1.csproj": {}
+    "D:\\ATBM2\\ATBM-atbmcq-17-Phanhe1-connectToDb\\ATBM-atbmcq-17-Phanhe1-connectToDb\\ATBM-atbmcq-17-Phanhe1\\ATBM-atbmcq-17-Phanhe1.csproj": {}
   },
   "projects": {
-    "E:\\ADMIN\\src\\ATBM-atbmcq-17-Phanhe1\\ATBM-atbmcq-17-Phanhe1\\ATBM-atbmcq-17-Phanhe1.csproj": {
+    "D:\\ATBM2\\ATBM-atbmcq-17-Phanhe1-connectToDb\\ATBM-atbmcq-17-Phanhe1-connectToDb\\ATBM-atbmcq-17-Phanhe1\\ATBM-atbmcq-17-Phanhe1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\ADMIN\\src\\ATBM-atbmcq-17-Phanhe1\\ATBM-atbmcq-17-Phanhe1\\ATBM-atbmcq-17-Phanhe1.csproj",
+        "projectUniqueName": "D:\\ATBM2\\ATBM-atbmcq-17-Phanhe1-connectToDb\\ATBM-atbmcq-17-Phanhe1-connectToDb\\ATBM-atbmcq-17-Phanhe1\\ATBM-atbmcq-17-Phanhe1.csproj",
         "projectName": "ATBM-atbmcq-17-Phanhe1",
-        "projectPath": "E:\\ADMIN\\src\\ATBM-atbmcq-17-Phanhe1\\ATBM-atbmcq-17-Phanhe1\\ATBM-atbmcq-17-Phanhe1.csproj",
-        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "E:\\ADMIN\\src\\ATBM-atbmcq-17-Phanhe1\\ATBM-atbmcq-17-Phanhe1\\obj\\",
+        "projectPath": "D:\\ATBM2\\ATBM-atbmcq-17-Phanhe1-connectToDb\\ATBM-atbmcq-17-Phanhe1-connectToDb\\ATBM-atbmcq-17-Phanhe1\\ATBM-atbmcq-17-Phanhe1.csproj",
+        "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
+        "outputPath": "D:\\ATBM2\\ATBM-atbmcq-17-Phanhe1-connectToDb\\ATBM-atbmcq-17-Phanhe1-connectToDb\\ATBM-atbmcq-17-Phanhe1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net9.0-windows"
+          "net6.0-windows"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net9.0-windows7.0": {
-            "targetAlias": "net9.0-windows",
+          "net6.0-windows7.0": {
+            "targetAlias": "net6.0-windows",
             "projectReferences": {}
           }
         },
@@ -44,13 +44,13 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
-        "net9.0-windows7.0": {
-          "targetAlias": "net9.0-windows",
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
           "dependencies": {
-            "Oracle.ManagedDataAccess": {
+            "Oracle.ManagedDataAccess.Core": {
               "target": "Package",
               "version": "[23.8.0, )"
             }
@@ -74,7 +74,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
