@@ -7,37 +7,45 @@ using System.Linq.Expressions;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ATBM_atbmcq_17_Phanhe1.Services
 {
-    class ConnectionManager
+    public class ConnectionManager
     {
         private string username;
         private string password;
         private string hostname;
         private string port;
         private string serviceName;
-        private OracleConnection con;
+        private OracleConnection? con = null;
 
         public ConnectionManager(List<string> connectionInformation) {
             if (connectionInformation == null || connectionInformation.Count < 5)
             {
                 throw new ArgumentException("\"connectionInformation must contain at least 5 elements: user, password, hostname, port, service name.");
             }
-
-            this.username = connectionInformation[0];
-            this.password = connectionInformation[1];
-            this.hostname = connectionInformation[2];
-            this.port = connectionInformation[3];
-            this.serviceName = connectionInformation[4];
+            string rawPort = connectionInformation[3];
+            if (!int.TryParse(rawPort.Trim(), out _))
+            {
+                MessageBox.Show($"Giá trị nhập ở ô 'Port' không hợp lệ: \"{rawPort}\"", "Lỗi định dạng Port", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new FormatException("Port phải là một số hợp lệ!");
+            }
+            this.username = connectionInformation[0].Trim();
+            this.password = connectionInformation[1].Trim();
+            this.hostname = connectionInformation[2].Trim();
+            this.port = connectionInformation[3].Trim();
+            this.serviceName = connectionInformation[4].Trim();
         }
 
         public string createConnectionURL()
         {
             try
             {
-                return $"User Id={username};Password={password};Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={hostname})(PORT={port}))(CONNECT_DATA=(SERVICE_NAME={serviceName})))";
+                string connStr = $"User Id={username};Password={password};Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={hostname})(PORT={port}))(CONNECT_DATA=(SERVICE_NAME={serviceName})))";
+                Console.WriteLine("🔗 Connection String: " + connStr);
+                return connStr;
             }
             catch (Exception ex)
             {
@@ -60,27 +68,31 @@ namespace ATBM_atbmcq_17_Phanhe1.Services
 
         public bool connectToDatabase()
         {
-            if (!IsOracleDriverAvailable())
+            string connectionURL = createConnectionURL();
+            OracleConnection con = new OracleConnection(connectionURL);
+            try
             {
-                return false;
-            }
-            else
-            {
-                string connectionURL = createConnectionURL();
-                OracleConnection con = new OracleConnection(connectionURL);
-
-                try
+                if (con != null)
                 {
                     con.Open();
                     this.con = con;
                     return true;
                 }
-                catch (OracleException ex)
+                else
                 {
+                    MessageBox.Show("Kết nối null, không thể mở!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
+            catch (OracleException ex)
+            {
+                Console.WriteLine("❌ Oracle Error: " + ex.Message);
+                MessageBox.Show("Lỗi kết nối Oracle: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
         }
+
         public OracleConnection getConnection() { return this.con; }
 
         public void closeConnection()

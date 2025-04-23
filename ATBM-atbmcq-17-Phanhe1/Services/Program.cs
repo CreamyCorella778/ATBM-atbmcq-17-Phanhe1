@@ -1,3 +1,5 @@
+using ATBM_atbmcq_17_Phanhe1.Forms;
+
 namespace ATBM_atbmcq_17_Phanhe1.Services
 {
     internal static class Program
@@ -11,7 +13,11 @@ namespace ATBM_atbmcq_17_Phanhe1.Services
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            ConnectionDBForm f = new ConnectionDBForm();
+            Application.Run(f);
+            //Application.Run(new Form1());
         }
     }
 }
