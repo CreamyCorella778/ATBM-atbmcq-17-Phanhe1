@@ -21,7 +21,8 @@ namespace ATBM_atbmcq_17_Phanhe1.Services
         private string serviceName;
         private OracleConnection? con = null;
 
-        public ConnectionManager(List<string> connectionInformation) {
+        public ConnectionManager(List<string> connectionInformation)
+        {
             if (connectionInformation == null || connectionInformation.Count < 5)
             {
                 throw new ArgumentException("\"connectionInformation must contain at least 5 elements: user, password, hostname, port, service name.");
@@ -108,6 +109,20 @@ namespace ATBM_atbmcq_17_Phanhe1.Services
                 {
                     Console.WriteLine(e.StackTrace);
                 }
+            }
+        }
+        public string getCurrentUser()
+        {
+            try
+            {
+                // Lấy tên user hiện tại từ session Oracle
+                OracleCommand cmd = new OracleCommand("SELECT USER FROM DUAL", getConnection());
+                string currentUser = cmd.ExecuteScalar().ToString();
+                return currentUser;
+            }
+            catch (Exception)
+            {
+                return string.Empty;
             }
         }
     }
