@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net9.0-windows</TargetFramework>
+	  <TargetFramework>net6.0-windows</TargetFramework>
+	  <LangVersion>10.0</LangVersion>
     <RootNamespace>ATBM_atbmcq_17_Phanhe1</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
@@ -14,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Oracle.ManagedDataAccess" Version="23.8.0" />
+    <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="23.8.0" />
   </ItemGroup>
 
 </Project>

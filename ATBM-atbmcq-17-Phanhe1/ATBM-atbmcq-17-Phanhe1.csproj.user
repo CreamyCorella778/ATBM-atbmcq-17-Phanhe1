@@ -1,7 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_LastSelectedProfileId>D:\ATBM2\ATBM-atbmcq-17-Phanhe1-Source-code\ATBM-atbmcq-17-Phanhe1\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
+  </PropertyGroup>
   <ItemGroup>
+    <Compile Update="Forms\ConnectionDBForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\GrantPrivilegeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\UserRolePrivilegeForm.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
